@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Color Flashcards</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="css/reset.css" rel="stylesheet" type="text/css" />
+    <link href="css/animations.css" rel="stylesheet" type="text/css" />
+    <link href="css/components.css" rel="stylesheet" type="text/css" />
+    <link href="css/svg.css" rel="stylesheet" type="text/css" />
+    <link href="css/utilities.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="u-visually-hidden">
+        <h1>Color Flashcards</h1>
+        <p>Press the Next color button to see &amp; hear another color.</p>
+        <p>You can also mute the custom color sound effects, to listen to your operating system's pronunciation of them.</p>
+    </div>
+
+    <div class="full-screen card" role="alert" aria-live="assertive"></div>
+
+    <button id="next-color" class="full-screen" aria-label="Next color"></button>
+    <button id="toggle-mute" aria-hidden="true">
+        <svg viewBox="0 0 128 100" xmlns="http://www.w3.org/2000/svg" width="32" height="25"><path d="M58.593 0L21.065 29.57c-.645.538-1.928 1.075-2.79 1.075H0v38.71h18.276c.86 0 2.144.43 2.79 1.075L58.592 100V0z"/><path d="M73.898 33.346l-5.46 5.645c2.887 2.81 4.602 6.66 4.602 11.013 0 4.35-1.714 8.203-4.6 11.012l5.458 5.644c4.377-4.26 6.993-10.21 6.993-16.657 0-6.446-2.615-12.398-6.992-16.657zM90.644 16.69l-5.55 5.552c7.145 7.147 11.5 16.943 11.5 27.76s-4.387 20.703-11.5 27.73l5.52 5.583c8.59-8.483 13.832-20.376 13.832-33.313 0-12.937-5.245-24.755-13.802-33.313zM107.328 0l-5.55 5.554c11.363 11.366 18.37 27.05 18.37 44.447 0 17.397-7.006 33.082-18.37 44.448l5.55 5.552C120.108 87.22 128 69.513 128 50c0-19.512-7.893-37.22-20.672-50z" class="svg-visible-default"/><path d="M81.81 29l-5.25 5.25L92.323 50 76.56 65.75 81.81 71l15.75-15.766L113.31 71l5.25-5.25L102.792 50l15.766-15.75-5.25-5.25-15.75 15.766L81.81 29z" class="svg-hidden-default"/></svg>
+    </button>
+
+    <div class="full-screen preloader">
+        <p class="u-visually-hidden">Made with love for Charlotte Peach</p>
+        <div class="a-rubber-band">
+            <svg class="preloader__logo" xmlns="http://www.w3.org/2000/svg" width="100" height="98" viewBox="0 0 100 98"><path fill="#fff" d="M80.585 28.59c11.556.146 14.532 10.767 18.385 18.86l.327-.816.703-9.285c0-10.458 1.05-10.97-3.755-19.75-10.152-18.548-41.21-5.515-51.694-6.06l-1.125-.663c-.576-2.696.383-6.95-.985-9.154L39.617 0c-1.942-2.512-1.044 3.54-3.047 3.158-5.867-1.12-.95 4.91 1.266 9.153-10.066 1.882-23.984 3.88-29.634 13.927-33.818 60.132 53.823 104.205 75.51 40.48 3.778-11.106 4.483-28.56-3.127-38.128zM47.328 15.152l-2.598-1.95.253-.344c6.278-.113 16.54 6.727 22.148 9.834 30.758 17.04 18.154 73.06-18.036 73.13-47.177.09-67.47-58.23-23.554-79.624 6.453-3.144 14.415.312 21.523-.687l.265-.36zm2.476-2.64C70.94-4.468 104.58 14.947 98.58 42.92c-4.753-15.58-34.19-22.366-48.776-30.408zm-13.73-8.026c1.526-.715 5.724-4.322 6.012-.365-.746 3.05.044 6.927 1.154 9.78l-.307.898-3.384.016c-.916-.595-3.02-8.873-3.477-10.33zm59.5 24.393l.24-.21C89.338 18.216 71.508 11.926 59.75 10.1c-.915-.143-1.415.378-.352.744C70.548 14.68 86.734 21.08 95.573 28.88zm-49.92 62.934l-.386-.554-8.758-2.73c-2.566-.62-5.602-.443-8.08-1.344C13.996 81.93 9.997 67.183 5.965 54.308c.502-.41-1.097 1.047-.973 1.682C6.1 61.704 7.81 65.863 10.46 71c7.232 14.03 19.55 20.475 35.194 20.814zM56.352 20.4l.316.393 4.368 2.557c1.73 1.36 5.522 4.455 6.754 6.185 3.345 4.7 5.492 12.88 6.447 18.542 1.16 6.883.96 13.532.507 20.45-.26 3.966-1.592 7.667-2.443 11.504-.138.628.11.428.395.015C83.828 63.898 78.995 25.6 56.352 20.4z"/></svg>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/redux@3.6.0/dist/redux.min.js"></script>
+    <script src="js/action-types.js"></script>
+    <script src="js/actions.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/dom.js"></script>
+    <script src="js/initial-state.js"></script>
+    <script src="js/reducers.js"></script>
+    <script src="js/render.js"></script>
+</body>
+</html>

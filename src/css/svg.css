@@ -1,0 +1,15 @@
+.svg-visible-default {
+    opacity: 1;
+}
+
+.svg-hidden-default {
+    opacity: 0;
+}
+
+.svg-toggled .svg-visible-default {
+    opacity: 0;
+}
+
+.svg-toggled .svg-hidden-default {
+    opacity: 1;
+}
