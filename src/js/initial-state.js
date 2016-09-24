@@ -1,49 +1,30 @@
-let colors = [
-    {
-        label: 'Black'
-    },
-    {
-        label: 'Blue'
-    },
-    {
-        label: 'Brown'
-    },
-    {
-        label: 'Gold'
-    },
-    {
-        label: 'Gray'
-    },
-    {
-        label: 'Green'
-    },
-    {
-        label: 'Orange'
-    },
-    {
-        label: 'Pink'
-    },
-    {
-        label: 'Purple'
-    },
-    {
-        label: 'Red'
-    },
-    {
-        label: 'White'
-    },
-    {
-        label: 'Yellow'
-    }
-];
+import { shuffleArray } from './common';
+import { loadAudio } from './load-audio';
 
-const colorsLength = colors.length;
-
-const initialRandomIndex = randomize(colors, colorsLength);
-
-const initialState = {
-    colorIndex: initialRandomIndex,
-    prevColors: [initialRandomIndex],
-    playableSamples: 0,
-    muted: false
+export let colors = {
+    Black: {},
+    Blue: {},
+    Brown: {},
+    Gold: {},
+    Gray: {},
+    Green: {},
+    Orange: {},
+    Pink: {},
+    Purple: {},
+    Red: {},
+    White: {},
+    Yellow: {}
 };
+
+export const colorsKeysArray = Object.keys(colors);
+export const colorsLength = colorsKeysArray.length;
+export const initialState = {
+    sequence: shuffleArray(colorsKeysArray),
+    step: 0,
+    muted: false,
+    start: false
+};
+
+colorsKeysArray.forEach((color) => {
+    colors[color].sample = loadAudio(color.toLowerCase());
+});

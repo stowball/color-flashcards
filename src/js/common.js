@@ -1,4 +1,4 @@
-function keyboardFocus (e) {
+export function keyboardFocus (e) {
     if (e.keyCode !== 9) {
         return;
     }
@@ -7,10 +7,19 @@ function keyboardFocus (e) {
     document.removeEventListener('keydown', keyboardFocus, false);
 }
 
-document.addEventListener('keydown', keyboardFocus, false);
+export function shuffleArray (arr) {
+    let shuffledArray = arr.slice();
+    let len = arr.length;
+    let randomIndex;
+    let tempValue;
 
-function randomize (arr, arrLength) {
-    const len = arrLength || arr.length
+    while (len) {
+        randomIndex = Math.floor(Math.random() * len);
+        len--;
+        tempValue = shuffledArray[len];
+        shuffledArray[len] = shuffledArray[randomIndex];
+        shuffledArray[randomIndex] = tempValue;
+    }
 
-    return Math.floor(Math.random() * ((len - 1) + 1));
+    return shuffledArray;
 }

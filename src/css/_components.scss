@@ -12,23 +12,16 @@
     width: 100%;
 }
 
-.preloader {
+#preloader {
+    &.is-hidden {
+        opacity: 0;
+        transition: opacity 0.2s linear, visibility 0.01s linear 0.21s;
+        visibility: hidden;
+    }
+}
+
+.intro {
     background: #f69c6a;
-    transition: opacity 0.2s linear 0.3s, visibility 0.01s linear 0.51s;
-}
-
-.preloader.is-hidden {
-    opacity: 0;
-    visibility: hidden;
-}
-
-.preloader__logo {
-    transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-.preloader.is-hidden .preloader__logo {
-    opacity: 0;
-    transform: scale(100);
 }
 
 .card {
@@ -101,15 +94,4 @@
     bottom: 10px;
     position: fixed;
     stroke: #000;
-}
-
-.u-visually-hidden {
-    border: none !important;
-    clip: rect(0 0 0 0) !important;
-    height: 1px !important;
-    margin: -1px !important;
-    overflow: hidden !important;
-    padding: 0 !important;
-    position: absolute !important;
-    width: 1px !important;
 }

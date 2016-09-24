@@ -1,22 +1,30 @@
-const actions = {
-    colorIndex: () => {
+import { ACTION_TYPES } from './action-types';
+
+export const actions = {
+    sequence: (sequence) => {
         return {
-            type: ACTION_TYPES.colorIndex
+            type: ACTION_TYPES.sequence,
+            sequence
         };
     },
-    prevColors: () => {
+    step: () => {
         return {
-            type: ACTION_TYPES.prevColors
+            type: ACTION_TYPES.step
         };
     },
-    incrementSamples: () => {
+    stepReset: () => {
         return {
-            type: ACTION_TYPES.incrementSamples
+            type: ACTION_TYPES.stepReset
         };
     },
     toggleMute: () => {
         return {
-            type: ACTION_TYPES.toggleMut
+            type: ACTION_TYPES.toggleMute
+        };
+    },
+    start: () => {
+        return {
+            type: ACTION_TYPES.start
         };
     }
 };

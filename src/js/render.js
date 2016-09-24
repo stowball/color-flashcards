@@ -1,47 +1,59 @@
-const store = Redux.createStore(rootReducer, initialState);
+import { actions } from './actions';
+import { keyboardFocus, shuffleArray } from './common';
+import { preloader, card, btnToggleMute } from './dom';
+import { colors, colorsKeysArray, colorsLength } from './initial-state';
+import { store } from './store';
 
-setTimeout(() => {
-    colors = colors.map((color) => {
-        color.sample = new Audio('/audio/' + color.label.toLowerCase() + '.m4a');
+document.addEventListener('keydown', keyboardFocus, false);
 
-        color.sample.addEventListener('canplay', () => {
-            store.dispatch(actions.incrementSamples());
-        });
+function createNewSequence () {
+    let arr = shuffleArray(colorsKeysArray);
 
-        return color;
-    });
-}, 1000);
-
-const FALLBACK_DURATION = 5000;
-let canFallback = false;
-
-let fallBackTimer = setTimeout(() => {
-    canFallback = true;
-    clearTimeout(fallBackTimer);
-
-    if (store.getState().playableSamples < colorsLength) {
-        render();
+    if (arr[0] === store.getState().sequence[colorsLength - 1]) {
+        arr = [...arr.slice(1), store.getState().sequence[colorsLength - 1]];
     }
-}, FALLBACK_DURATION);
 
-function render () {
-    if (canFallback || store.getState().playableSamples === colorsLength) {
-        const index = store.getState().colorIndex;
-        const curr = colors[index];
-
-        preloader.classList.add('is-hidden');
-
-        card.innerHTML = curr.label;
-        card.className = card.className.replace(/(card--\w+\s?)?/, `card--${curr.label.toLowerCase()} `);
-
-        btnToggleMute.setAttribute('aria-label', store.getState().muted ? 'Un-mute' : 'Mute');
-        btnToggleMute.setAttribute('aria-hidden', false);
-        btnToggleMute.classList.toggle('svg-toggled', store.getState().muted);
-
-        if (!store.getState().muted && !colors[index].sample.error) {
-            colors[index].sample.play();
-        }
-    }
+    store.dispatch(actions.sequence(arr));
 }
 
-store.subscribe(render);
+let previousColorIndex;
+
+export function render () {
+    if (!store.getState().start) {
+        return;
+    }
+
+    btnToggleMute.setAttribute('aria-hidden', false);
+    btnToggleMute.setAttribute('aria-pressed', store.getState().muted);
+    if (store.getState().muted) {
+        btnToggleMute.classList.add('svg-toggled');
+    }
+    else {
+        btnToggleMute.classList.remove('svg-toggled');
+    }
+
+    const index = store.getState().step;
+
+    if (previousColorIndex === index) {
+        return;
+    }
+
+    previousColorIndex = index;
+
+    if (index > colorsLength - 1) {
+        createNewSequence();
+        store.dispatch(actions.stepReset());
+
+        return;
+    }
+
+    const curr = store.getState().sequence[index];
+
+    preloader.classList.add('is-hidden');
+    card.innerHTML = curr;
+    card.className = card.className.replace(/(card--\w+\s?)?/, `card--${curr.toLowerCase()} `);
+
+    if (!store.getState().muted && !colors[curr].sample.error) {
+        colors[curr].sample.play();
+    }
+}

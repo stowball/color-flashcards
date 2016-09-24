@@ -1,6 +1,7 @@
-const ACTION_TYPES = {
-    colorIndex: 'COLOR_INDEX',
-    prevColors: 'PREV_COLORS',
-    incrementSamples: 'INCREMENT_SAMPLES',
-    toggleMute: 'TOGGLE_MUTE'
+export const ACTION_TYPES = {
+    sequence: 'SEQUENCE',
+    step: 'STEP',
+    stepReset: 'STEP_RESET',
+    toggleMute: 'TOGGLE_MUTE',
+    start: 'START'
 };

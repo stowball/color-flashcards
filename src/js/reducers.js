@@ -1,40 +1,26 @@
-function colorIndex (state = 0, action) {
-    if (action.type === ACTION_TYPES.colorIndex) {
-        let index;
+import { combineReducers } from 'redux';
+import { ACTION_TYPES } from './action-types';
 
-        do {
-            index = randomize(colors, colorsLength);
-        } while (store.getState().prevColors.indexOf(index) > -1);
-
-        return index;
+export function sequence (state = [], action) {
+    if (action.type === ACTION_TYPES.sequence) {
+        return action.sequence;
     }
 
     return state;
 }
 
-function playableSamples (state = 0, action) {
-    if (action.type === ACTION_TYPES.incrementSamples) {
+export function step (state = 0, action) {
+    if (action.type === ACTION_TYPES.step) {
         return state + 1;
     }
-
-    return state;
-}
-
-function prevColors (state = [], action) {
-    if (action.type === ACTION_TYPES.prevColors) {
-        let newState = [...state, store.getState().colorIndex];
-
-        if (newState.length === Math.floor(colorsLength / 2) + 1) {
-            newState.shift();
-        }
-
-        return newState;
+    else if (action.type === ACTION_TYPES.stepReset) {
+        return 0;
     }
 
     return state;
 }
 
-function muted (state = false, action) {
+export function muted (state = false, action) {
     if (action.type === ACTION_TYPES.toggleMute) {
         return !state;
     }
@@ -42,4 +28,12 @@ function muted (state = false, action) {
     return state;
 }
 
-const rootReducer = Redux.combineReducers({ colorIndex, prevColors, playableSamples, muted });
+export function start (state = false, action) {
+    if (action.type === ACTION_TYPES.start) {
+        return !state;
+    }
+
+    return state;
+}
+
+export const rootReducer = combineReducers({ sequence, step, muted, start });
