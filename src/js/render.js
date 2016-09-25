@@ -64,16 +64,22 @@ export function render () {
     }
 
     const curr = store.getState().sequence[index];
+    const sample = colors[curr].sample;
 
     preloader.classList.add('is-hidden');
     colorName.innerHTML = curr;
     colorName.className = colorName.className.replace(/(card--\w+\s?)?/, `card--${curr.toLowerCase()} `);
 
+    if (!store.getState().mute && !sample.error) {
+        sample.play();
+        sample.pause();
+    }
+
     delayTimer = setTimeout(() => {
         colorNameA11y.innerHTML = curr;
 
-        if (!store.getState().mute && !colors[curr].sample.error) {
-            colors[curr].sample.play();
+        if (!store.getState().mute && !sample.error) {
+            sample.play();
         }
     }, store.getState().delay ? 2500 : 0);
 }

@@ -85,6 +85,11 @@
     background: yellow;
 }
 
+#next-color {
+    box-shadow: none;
+    outline: none;
+}
+
 .keyboard-focus #next-color:focus {
     box-shadow: 0 0 20px #00bdbb inset;
 }
