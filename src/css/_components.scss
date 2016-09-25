@@ -89,10 +89,14 @@
     box-shadow: 0 0 20px #00bdbb inset;
 }
 
-#toggle-mute {
-    fill: #fff;
+.toggles {
     left: 10px;
     bottom: 10px;
     position: fixed;
+}
+
+.toggles__button {
+    fill: #fff;
+    margin-right: 10px;
     stroke: #000;
 }

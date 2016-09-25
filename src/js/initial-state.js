@@ -21,7 +21,8 @@ export const colorsLength = colorsKeysArray.length;
 export const initialState = {
     sequence: shuffleArray(colorsKeysArray),
     step: 0,
-    muted: false,
+    mute: false,
+    delay: false,
     start: false
 };
 
