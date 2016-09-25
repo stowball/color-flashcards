@@ -15,7 +15,7 @@ For supporting browsers of [Fetch](http://caniuse.com/#search=fetch), [FileReade
 * Webpack
 * Babel
 * Sass
-* Autprefixer
+* Autoprefixer
 * SVG
 
 ## How to run locally
