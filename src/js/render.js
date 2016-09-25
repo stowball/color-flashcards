@@ -1,6 +1,6 @@
 import { actions } from './actions';
 import { keyboardFocus, shuffleArray } from './common';
-import { preloader, card, btnToggleMute } from './dom';
+import { preloader, colorName, colorNameA11y, btnNextColor, btnToggleMute, btnToggleDelay } from './dom';
 import { colors, colorsKeysArray, colorsLength } from './initial-state';
 import { store } from './store';
 
@@ -17,20 +17,35 @@ function createNewSequence () {
 }
 
 let previousColorIndex;
+let delayTimer;
+
+function setToggleStates () {
+    btnToggleMute.setAttribute('aria-pressed', store.getState().mute);
+    if (store.getState().mute) {
+        btnToggleMute.classList.add('svg-toggled');
+        clearInterval(delayTimer);
+    }
+    else {
+        btnToggleMute.classList.remove('svg-toggled');
+    }
+
+    btnToggleDelay.setAttribute('aria-pressed', store.getState().delay);
+    if (store.getState().delay) {
+        btnToggleDelay.classList.add('svg-toggled');
+    }
+    else {
+        btnToggleDelay.classList.remove('svg-toggled');
+    }
+}
 
 export function render () {
     if (!store.getState().start) {
         return;
     }
 
-    btnToggleMute.setAttribute('aria-hidden', false);
-    btnToggleMute.setAttribute('aria-pressed', store.getState().muted);
-    if (store.getState().muted) {
-        btnToggleMute.classList.add('svg-toggled');
-    }
-    else {
-        btnToggleMute.classList.remove('svg-toggled');
-    }
+    btnNextColor.setAttribute('aria-hidden', false);
+
+    setToggleStates();
 
     const index = store.getState().step;
 
@@ -39,6 +54,7 @@ export function render () {
     }
 
     previousColorIndex = index;
+    clearInterval(delayTimer);
 
     if (index > colorsLength - 1) {
         createNewSequence();
@@ -50,10 +66,14 @@ export function render () {
     const curr = store.getState().sequence[index];
 
     preloader.classList.add('is-hidden');
-    card.innerHTML = curr;
-    card.className = card.className.replace(/(card--\w+\s?)?/, `card--${curr.toLowerCase()} `);
+    colorName.innerHTML = curr;
+    colorName.className = colorName.className.replace(/(card--\w+\s?)?/, `card--${curr.toLowerCase()} `);
 
-    if (!store.getState().muted && !colors[curr].sample.error) {
-        colors[curr].sample.play();
-    }
+    delayTimer = setTimeout(() => {
+        colorNameA11y.innerHTML = curr;
+
+        if (!store.getState().mute && !colors[curr].sample.error) {
+            colors[curr].sample.play();
+        }
+    }, store.getState().delay ? 2500 : 0);
 }

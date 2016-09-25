@@ -16,15 +16,21 @@
     <div class="u-visually-hidden">
         <h1>Color Flashcards</h1>
         <p>Press the Next color button to see and hear another color.</p>
-        <p>You can also mute the custom color sound effects, to listen to your operating system's pronunciation of them.</p>
+        <p>You can also mute the custom color sound effects, to listen to your operating system&apos;s pronunciation of them.</p>
     </div>
 
-    <div class="full-screen card" role="alert" aria-live="assertive"></div>
+    <div id="color-name" class="full-screen card" aria-hidden="true"></div>
+    <div id="color-name-a11y" class="u-visually-hidden" role="alert" aria-live="assertive"></div>
 
-    <button id="next-color" class="full-screen" aria-label="Next color"></button>
-    <button id="toggle-mute" aria-label="Mute" aria-hidden="true">
-        <svg viewBox="0 0 128 100" xmlns="http://www.w3.org/2000/svg" width="32" height="25"><path d="M58.593 0L21.065 29.57c-.645.538-1.928 1.075-2.79 1.075H0v38.71h18.276c.86 0 2.144.43 2.79 1.075L58.592 100V0z"/><path d="M73.898 33.346l-5.46 5.645c2.887 2.81 4.602 6.66 4.602 11.013 0 4.35-1.714 8.203-4.6 11.012l5.458 5.644c4.377-4.26 6.993-10.21 6.993-16.657 0-6.446-2.615-12.398-6.992-16.657zM90.644 16.69l-5.55 5.552c7.145 7.147 11.5 16.943 11.5 27.76s-4.387 20.703-11.5 27.73l5.52 5.583c8.59-8.483 13.832-20.376 13.832-33.313 0-12.937-5.245-24.755-13.802-33.313zM107.328 0l-5.55 5.554c11.363 11.366 18.37 27.05 18.37 44.447 0 17.397-7.006 33.082-18.37 44.448l5.55 5.552C120.108 87.22 128 69.513 128 50c0-19.512-7.893-37.22-20.672-50z" class="svg-visible-default"/><path d="M81.81 29l-5.25 5.25L92.323 50 76.56 65.75 81.81 71l15.75-15.766L113.31 71l5.25-5.25L102.792 50l15.766-15.75-5.25-5.25-15.75 15.766L81.81 29z" class="svg-hidden-default"/></svg>
-    </button>
+    <button id="next-color" class="full-screen" aria-label="Next color" aria-hidden="true"></button>
+    <div class="toggles">
+        <button class="toggles__button" id="toggle-mute" aria-label="Mute">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="25" viewBox="0 0 128 100"><path d="M59.058 4L24.755 31.01c-.59.495-1.763.99-2.55.99H5v36h17.706c.786 0 1.4.396 1.99.99L59 96V4h.058z"/><path d="M103.605 4L98.53 9.11C108.92 19.566 115.324 33.996 115.324 50c0 16.005-6.404 30.436-16.792 40.892L103.606 96c11.68-11.76 18.895-28.048 18.895-46 0-17.95-7.214-34.24-18.895-46zm-15.25 15.354l-5.074 5.108c6.532 6.576 10.514 15.588 10.514 25.54 0 9.95-4.01 19.047-10.513 25.51l5.047 5.138c7.85-7.805 12.643-18.746 12.643-30.648 0-11.903-4.794-22.774-12.615-30.648zM73.048 34.68l-4.99 5.19c2.637 2.586 4.205 6.13 4.205 10.133 0 4.003-1.567 7.547-4.206 10.13l4.99 5.194c4-3.918 6.392-9.394 6.392-15.324s-2.392-11.406-6.392-15.324z" class="svg-visible-default"/><path d="M80.278 30.68l-4.8 4.83L89.892 50 75.48 64.49l4.798 4.83 14.397-14.504L109.07 69.32l4.8-4.83L99.46 50l14.41-14.49-4.8-4.83-14.395 14.504L80.278 30.68z" class="svg-hidden-default"/></svg>
+        </button>
+        <button class="toggles__button" id="toggle-delay" aria-label="Delay reading color">
+            <svg xmlns="http://www.w3.org/2000/svg" width="23" height="25" viewBox="0 0 92 100"><path d="M46 90c19.882 0 36-16.118 36-36 0-19.883-16.118-36-36-36v36H10c0 19.882 16.117 36 36 36z" class="svg-hidden-default"/><path d="M46 18v36h.275l25.32-25.32C65.07 22.084 56.01 18 46 18z" class="svg-visible-default"/><path d="M5 54c0-22.644 18.356-41 41-41s41 18.356 41 41-18.356 41-41 41S5 76.644 5 54zM40.5 0c-.828 0-1.5.672-1.5 1.5v2c0 .828.672 1.5 1.5 1.5H42v3.17C18.468 10.197 0 29.942 0 54c0 25.405 20.595 46 46 46s46-20.595 46-46c0-24.058-18.468-43.803-42-45.83V5h1.5c.828 0 1.5-.672 1.5-1.5v-2c0-.828-.672-1.5-1.5-1.5h-11z"/></svg>
+        </button>
+    </div>
 
     <div id="preloader">
         <div class="full-screen intro">

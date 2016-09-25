@@ -22,6 +22,11 @@ export const actions = {
             type: ACTION_TYPES.toggleMute
         };
     },
+    toggleDelay: () => {
+        return {
+            type: ACTION_TYPES.toggleDelay
+        };
+    },
     start: () => {
         return {
             type: ACTION_TYPES.start
