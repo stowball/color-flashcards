@@ -1,6 +1,6 @@
 {
   "name": "color-flashcards",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Color Flashcards - A simple web app (in under 10kb gzipped) to help teach your children colors with both visual and audio cues.",
   "main": "js/app.js",
   "watch": {
