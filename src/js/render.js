@@ -4,6 +4,7 @@ import { preloader, colorName, colorNameA11y, btnNextColor, btnToggleMute, btnTo
 import { colors, colorsKeysArray, colorsLength } from './initial-state';
 import { store } from './store';
 
+document.documentElement.classList.remove('no-js');
 document.addEventListener('keydown', keyboardFocus, false);
 
 function createNewSequence () {
@@ -43,6 +44,8 @@ export function render () {
         return;
     }
 
+    colorName.classList.add('full-screen');
+    btnNextColor.classList.add('full-screen');
     btnNextColor.setAttribute('aria-hidden', false);
 
     setToggleStates();
@@ -81,5 +84,5 @@ export function render () {
         if (!store.getState().mute && !sample.error) {
             sample.play();
         }
-    }, store.getState().delay ? 2500 : 0);
+    }, store.getState().delay ? 2000 : 0);
 }
