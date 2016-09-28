@@ -19,26 +19,35 @@ export function loadAudio (colorName) {
             return initSample(JSON.parse(localStorage.getItem(colorName)).src);
         }
 
-        fetch(url).then((response) => {
-            response.blob().then((blob) => {
-                const reader = new FileReader ();
+        fetch(url)
+            .then((response) => {
+                if (!response.ok) {
+                    throw Error(response.statusText);
+                }
 
-                reader.readAsDataURL(blob);
-                reader.addEventListener('loadend', () => {
-                    const base64Data = reader.result.toString();
-                    const mediaFile = {
-                        fileUrl: url,
-                        size: blob.size,
-                        type: blob.type,
-                        src: base64Data
-                    };
+                return response;
+            })
+            .then((response) => {
+                response.blob().then((blob) => {
+                    const reader = new FileReader ();
 
-                    localStorage.setItem(colorName, JSON.stringify(mediaFile));
+                    reader.readAsDataURL(blob);
+                    reader.addEventListener('loadend', () => {
+                        const base64Data = reader.result.toString();
+                        const mediaFile = {
+                            fileUrl: url,
+                            size: blob.size,
+                            type: blob.type,
+                            src: base64Data
+                        };
 
-                    return initSample(base64Data);
+                        localStorage.setItem(colorName, JSON.stringify(mediaFile));
+
+                        return initSample(base64Data);
+                    });
                 });
-            });
-        }).catch(() => initSample(url));
+            })
+            .catch(() => initSample(url));
     }
 
     return initSample(url);
