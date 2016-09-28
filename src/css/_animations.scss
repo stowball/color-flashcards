@@ -77,3 +77,23 @@
     animation-name: a-fade-in;
     animation-timing-function: ease;
 }
+
+@keyframes a-no-js-fade-out {
+    0% {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+.no-js .a-no-js-fade-out {
+    animation-delay: 1.5s;
+    animation-duration: 0.2s;
+    animation-fill-mode: forwards;
+    animation-name: a-no-js-fade-out;
+    animation-timing-function: ease;
+}

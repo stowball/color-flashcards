@@ -5,6 +5,11 @@ body {
     position: relative;
 }
 
+.no-js,
+.no-js body {
+    overflow: auto;
+}
+
 button {
     appearance: none;
     background: none;

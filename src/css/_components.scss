@@ -1,11 +1,14 @@
-.full-screen {
+.centered-content {
     align-items: center;
-    bottom: 0;
     display: flex;
     flex-direction: column;
     line-height: 1;
     justify-content: center;
     overflow: hidden;
+}
+
+.full-screen {
+    bottom: 0;
     left: 0;
     position: fixed;
     top: 0;
@@ -27,7 +30,12 @@
 .card {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     font-size: 15vw;
+    margin: 0;
     transition: background ease 0.15s;
+}
+
+.card--fallback {
+    height: 100vh;
 }
 
 .card--black {
@@ -98,10 +106,22 @@
     left: 10px;
     bottom: 10px;
     position: fixed;
+
+    .no-js & {
+        display: none;
+    }
 }
 
 .toggles__button {
     fill: #fff;
     margin-right: 10px;
     stroke: #000;
+}
+
+#fallbacks {
+    display: none;
+
+    .no-js & {
+        display: block;
+    }
 }
